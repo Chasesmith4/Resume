@@ -3,42 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Documents</title>
-    <style>
-      body {
-        font-family: "IBM Plex Sans", Inter, system-ui, sans-serif;
-        margin: 24px;
-        background: linear-gradient(180deg, #f7f8fa 0%, #eef1f4 100%);
-      }
-      a {
-        display: block;
-        margin: 0 0 10px;
-        color: #3b3b3b;
-        text-decoration: underline;
-        transition: all 0.2s ease;
-      }
-      a:hover {
-        color: #6c4cf5;
-        text-shadow: 0 0 6px rgba(108, 76, 245, 0.35);
-      }
-    </style>
-  </head>
-  <body>
-    <a href="/docs/jll_capital_raise_deck.pdf" target="_blank" rel="noreferrer">jll_capital_raise_deck.pdf</a>
-    <a href="/docs/jll_investor_presentation.pdf" target="_blank" rel="noreferrer">jll_investor_presentation.pdf</a>
-  </body>
-</html>
-index.html
-index.html
-New
-+240
--0
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chase Smith | Resume</title>
 
     <!-- Tailwind CSS (CDN) -->
@@ -56,13 +20,14 @@ New
       }
 
       a {
-        color: #3b3b3b;
-        text-decoration: underline;
+        color: inherit;
+        text-decoration: none;
         transition: all 0.2s ease;
       }
 
       a:hover {
         color: #6c4cf5;
+        text-decoration: underline;
         text-shadow: 0 0 6px rgba(108, 76, 245, 0.35);
       }
 
@@ -89,6 +54,38 @@ New
       section {
         margin-bottom: 38px;
       }
+
+      .contact-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.3rem 0.6rem;
+      }
+
+      .sep {
+        color: #9ca3af;
+      }
+
+      .doc-link {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.28rem;
+      }
+
+      .doc-icon {
+        width: 0.72rem;
+        height: 0.72rem;
+        color: #7c8090;
+        opacity: 0.85;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+      }
+
+      .doc-link:hover .doc-icon {
+        color: #6c4cf5;
+        opacity: 1;
+      }
     </style>
 
     <script>
@@ -109,14 +106,15 @@ New
       <!-- Header -->
       <header class="border-b border-black/10 pb-6 text-center">
         <h1 class="text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl">Chase Smith</h1>
-        <p class="mt-3 text-sm leading-relaxed text-zinc-800 sm:text-base">
-          850 Pacific Street, Stamford, CT 06850 &bull; 704-806-3232 &bull;
-          <a href="mailto:chasecsmith@protonmail.com" class="underline decoration-zinc-500 underline-offset-2">chasecsmith@protonmail.com</a>
-          &bull;
-          <a href="https://linkedin.com/in/chasesmith4/" target="_blank" rel="noreferrer" class="underline decoration-zinc-500 underline-offset-2"
-            >linkedin.com/in/chasesmith4/</a
-          >
-        </p>
+        <div class="contact-list mt-3 text-sm leading-relaxed text-zinc-800 sm:text-base">
+          <span>850 Pacific Street, Stamford, CT 06850</span>
+          <span class="sep" aria-hidden="true">&bull;</span>
+          <span>704-806-3232</span>
+          <span class="sep" aria-hidden="true">&bull;</span>
+          <a href="mailto:chasecsmith@protonmail.com">chasecsmith@protonmail.com</a>
+          <span class="sep" aria-hidden="true">&bull;</span>
+          <a href="https://linkedin.com/in/chasesmith4/" target="_blank" rel="noreferrer">linkedin.com/in/chasesmith4/</a>
+        </div>
       </header>
 
       <!-- Summary -->
@@ -148,8 +146,9 @@ New
                 Authored and advanced the platform&rsquo;s investment thesis centered on the premise that investment performance improves when healthcare real estate infrastructure is aligned with health system strategy and modern ambulatory care delivery models.
               </li>
               <li>
-                <a href="/docs/jll_capital_raise_materials.html" target="_blank" rel="noreferrer" class="bullet-link"
-                  >Engaged JLL&rsquo;s Medical Properties Group as exclusive placement agent and partnered with senior managing directors to structure the capital raise strategy and investor presentation materials</a
+                <a href="/docs/jll_capital_raise_materials.html" target="_blank" rel="noreferrer" class="doc-link bullet-link"
+                  >Engaged JLL&rsquo;s Medical Properties Group as exclusive placement agent and partnered with senior managing directors to structure the capital raise strategy and investor presentation materials
+                  <svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg></a
                 >
               </li>
               <li>
@@ -168,8 +167,9 @@ New
                 Led underwriting and transaction execution across more than $295MM of transaction volume spanning acquisitions, developments, recapitalizations, and dispositions of Class A medical assets including ambulatory surgery centers, imaging centers, orthopedic centers, and medical office buildings
               </li>
               <li>
-                <a href="/docs/welltower_underwriting_model.pdf" target="_blank" rel="noreferrer" class="bullet-link"
-                  >Built the underwriting model and recapitalization pro-forma for a $101MM seeded joint venture with Welltower, recapitalizing a 6-asset Class A outpatient portfolio into REIT ownership; managed ongoing communications with Welltower on go-forward acquisition opportunities; portfolio subsequently acquired by Remedy/Kayne Anderson in 2025</a
+                <a href="/docs/welltower_underwriting_model.pdf" target="_blank" rel="noreferrer" class="doc-link bullet-link"
+                  >Built the underwriting model and recapitalization pro-forma for a $101MM seeded joint venture with Welltower, recapitalizing a 6-asset Class A outpatient portfolio into REIT ownership; managed ongoing communications with Welltower on go-forward acquisition opportunities; portfolio subsequently acquired by Remedy/Kayne Anderson in 2025
+                  <svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg></a
                 >
               </li>
               <li>
@@ -179,8 +179,9 @@ New
                 Structured capital stacks across multiple transactions comprising senior debt, preferred equity, and common equity; led debt sizing and structuring, including hedging strategy, working directly with regional lenders on originations, refinancings, and extensions; sourced physician and high-net-worth investor equity
               </li>
               <li>
-                <a href="/docs/sample_offering_memorandum.pdf" target="_blank" rel="noreferrer" class="bullet-link"
-                  >Developed institutional-grade acquisition and development models in Excel and property-level cash flow analyses in Argus; performed sensitivity analysis and structured promote waterfalls; prepared Offering Memoranda supporting acquisitions, developments, and recapitalizations</a
+                <a href="/docs/sample_offering_memorandum.pdf" target="_blank" rel="noreferrer" class="doc-link bullet-link"
+                  >Developed institutional-grade acquisition and development models in Excel and property-level cash flow analyses in Argus; performed sensitivity analysis and structured promote waterfalls; prepared Offering Memoranda supporting acquisitions, developments, and recapitalizations
+                  <svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg></a
                 >
               </li>
               <li>
