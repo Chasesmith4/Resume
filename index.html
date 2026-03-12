@@ -14,14 +14,38 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <style>
+      :root {
+        --accent: #2c6e73;
+      }
+
       body {
         font-family: "IBM Plex Sans", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background-color: #f7f8f9;
+      }
+
+      a:hover {
+        color: var(--accent);
+      }
+
+      .section-title {
+        color: var(--accent);
+      }
+
+      .bullet-link {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .bullet-link:hover {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        cursor: pointer;
       }
     </style>
 
     <script>
       // Simple access-friction gate. Change password here.
-      const PASSWORD = "investor";
+      const PASSWORD = "healthcare";
 
       window.addEventListener("DOMContentLoaded", function () {
         const entered = window.prompt("Enter password to view resume:");
@@ -32,14 +56,16 @@
     </script>
   </head>
 
-  <body class="hidden bg-white text-zinc-900 antialiased">
-    <main class="mx-auto w-full max-w-4xl px-6 py-10 sm:px-10 sm:py-14">
+  <body class="hidden text-zinc-900 antialiased">
+    <main class="mx-auto my-6 w-full max-w-4xl bg-white px-6 py-10 sm:my-8 sm:px-10 sm:py-14">
       <!-- Header -->
       <header class="border-b border-zinc-300 pb-6 text-center">
         <h1 class="text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl">Chase Smith</h1>
         <p class="mt-3 text-sm leading-relaxed text-zinc-800 sm:text-base">
-          850 Pacific Street, Stamford, CT 06850 &bull; 704-806-3232 &bull; chasesmith@protonmail.com &bull;
-          <a href="https://linkedin.com/in/chasesmith4/" target="_blank" rel="noreferrer" class="underline decoration-zinc-500 underline-offset-2 hover:text-slate-700"
+          850 Pacific Street, Stamford, CT 06850 &bull; 704-806-3232 &bull;
+          <a href="mailto:chasecsmith@protonmail.com" class="underline decoration-zinc-500 underline-offset-2">chasecsmith@protonmail.com</a>
+          &bull;
+          <a href="https://linkedin.com/in/chasesmith4/" target="_blank" rel="noreferrer" class="underline decoration-zinc-500 underline-offset-2"
             >linkedin.com/in/chasesmith4/</a
           >
         </p>
@@ -47,7 +73,7 @@
 
       <!-- Summary -->
       <section class="pt-8">
-        <h2 class="border-b border-zinc-300 pb-2 text-sm font-semibold uppercase tracking-[0.14em] text-zinc-700">Summary Statement</h2>
+        <h2 class="section-title border-b border-zinc-300 pb-2 text-sm font-semibold uppercase tracking-[0.14em]">Summary Statement</h2>
         <p class="pt-4 text-[15px] leading-7 text-zinc-900 sm:text-base">
           Healthcare real estate investment professional with experience executing more than $295MM of outpatient medical real estate transactions across acquisitions, developments, recapitalizations, and dispositions. Combines hands-on execution across underwriting, due diligence and closing, capital structuring, and implementation of asset-level business plans throughout the investment lifecycle. Experienced in completing complex lease negotiations through direct engagement with C-suite and real estate leadership at major Northeast health systems. Brings deep domain knowledge of healthcare reimbursement frameworks, ambulatory care delivery models, and health system operations, applied directly to sourcing, underwriting, and asset-level management decisions. Prior foundation in credit underwriting at Bank of America across a $2B+ commercial loan portfolio.
         </p>
@@ -55,7 +81,7 @@
 
       <!-- Experience -->
       <section class="pt-10">
-        <h2 class="border-b border-zinc-300 pb-2 text-sm font-semibold uppercase tracking-[0.14em] text-zinc-700">Experience</h2>
+        <h2 class="section-title border-b border-zinc-300 pb-2 text-sm font-semibold uppercase tracking-[0.14em]">Experience</h2>
 
         <article class="pt-5">
           <p class="text-lg font-semibold text-zinc-950">Aspect Health, Inc., <span class="font-normal">Greenwich, CT</span></p>
@@ -74,11 +100,7 @@
                 Authored and advanced the platform&rsquo;s investment thesis centered on the premise that investment performance improves when healthcare real estate infrastructure is aligned with health system strategy and modern ambulatory care delivery models.
               </li>
               <li>
-                <a
-                  href="/docs/jll_capital_raise_deck.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="inline text-zinc-900 transition-colors hover:cursor-pointer hover:text-slate-700 hover:underline hover:decoration-slate-600 hover:underline-offset-2"
+                <a href="/docs/jll_capital_raise_materials.html" target="_blank" rel="noreferrer" class="bullet-link"
                   >Engaged JLL&rsquo;s Medical Properties Group as exclusive placement agent and partnered with senior managing directors to structure the capital raise strategy and investor presentation materials</a
                 >
               </li>
@@ -98,11 +120,7 @@
                 Led underwriting and transaction execution across more than $295MM of transaction volume spanning acquisitions, developments, recapitalizations, and dispositions of Class A medical assets including ambulatory surgery centers, imaging centers, orthopedic centers, and medical office buildings
               </li>
               <li>
-                <a
-                  href="/docs/welltower_underwriting_model.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="inline text-zinc-900 transition-colors hover:cursor-pointer hover:text-slate-700 hover:underline hover:decoration-slate-600 hover:underline-offset-2"
+                <a href="/docs/welltower_underwriting_model.pdf" target="_blank" rel="noreferrer" class="bullet-link"
                   >Built the underwriting model and recapitalization pro-forma for a $101MM seeded joint venture with Welltower, recapitalizing a 6-asset Class A outpatient portfolio into REIT ownership; managed ongoing communications with Welltower on go-forward acquisition opportunities; portfolio subsequently acquired by Remedy/Kayne Anderson in 2025</a
                 >
               </li>
@@ -113,11 +131,7 @@
                 Structured capital stacks across multiple transactions comprising senior debt, preferred equity, and common equity; led debt sizing and structuring, including hedging strategy, working directly with regional lenders on originations, refinancings, and extensions; sourced physician and high-net-worth investor equity
               </li>
               <li>
-                <a
-                  href="/docs/sample_offering_memorandum.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="inline text-zinc-900 transition-colors hover:cursor-pointer hover:text-slate-700 hover:underline hover:decoration-slate-600 hover:underline-offset-2"
+                <a href="/docs/sample_offering_memorandum.pdf" target="_blank" rel="noreferrer" class="bullet-link"
                   >Developed institutional-grade acquisition and development models in Excel and property-level cash flow analyses in Argus; performed sensitivity analysis and structured promote waterfalls; prepared Offering Memoranda supporting acquisitions, developments, and recapitalizations</a
                 >
               </li>
@@ -154,7 +168,7 @@
 
       <!-- Education -->
       <section class="pt-10">
-        <h2 class="border-b border-zinc-300 pb-2 text-sm font-semibold uppercase tracking-[0.14em] text-zinc-700">Education</h2>
+        <h2 class="section-title border-b border-zinc-300 pb-2 text-sm font-semibold uppercase tracking-[0.14em]">Education</h2>
         <div class="pt-4 space-y-1 text-[15px] leading-7 sm:text-base">
           <p><span class="font-semibold">Bentley University</span>, Waltham, MA</p>
           <p>Master of Business Administration, 2020 &ndash; Summa Cum Laude</p>
@@ -164,7 +178,7 @@
 
       <!-- Sector & Technical Expertise -->
       <section class="pt-10">
-        <h2 class="border-b border-zinc-300 pb-2 text-sm font-semibold uppercase tracking-[0.14em] text-zinc-700">Sector &amp; Technical Expertise</h2>
+        <h2 class="section-title border-b border-zinc-300 pb-2 text-sm font-semibold uppercase tracking-[0.14em]">Sector &amp; Technical Expertise</h2>
 
         <div class="pt-4">
           <h3 class="text-base font-semibold text-zinc-950">Healthcare Regulatory Expertise:</h3>
@@ -191,7 +205,7 @@
 
       <!-- Professional Affiliations -->
       <section class="pt-10">
-        <h2 class="border-b border-zinc-300 pb-2 text-sm font-semibold uppercase tracking-[0.14em] text-zinc-700">Professional &amp; Academic Affiliations</h2>
+        <h2 class="section-title border-b border-zinc-300 pb-2 text-sm font-semibold uppercase tracking-[0.14em]">Professional &amp; Academic Affiliations</h2>
         <div class="pt-4 text-[15px] leading-7 sm:text-base">
           <p><span class="font-semibold">Bentley University &mdash; Center for Health &amp; Business</span></p>
           <ul class="mt-1 list-disc pl-6">
@@ -204,7 +218,7 @@
 
       <!-- Interests -->
       <section class="pt-10">
-        <h2 class="border-b border-zinc-300 pb-2 text-sm font-semibold uppercase tracking-[0.14em] text-zinc-700">Interests</h2>
+        <h2 class="section-title border-b border-zinc-300 pb-2 text-sm font-semibold uppercase tracking-[0.14em]">Interests</h2>
         <ul class="pt-4 list-disc pl-6 text-[15px] leading-7 sm:text-base">
           <li>Endurance Athletics &mdash; 21&times; Ultramarathon Finisher &middot; 22&times; Marathon Finisher &middot; 2&times; 100-Mile Finisher</li>
         </ul>
