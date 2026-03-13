@@ -124,18 +124,63 @@
           document.body.classList.remove("hidden");
         }
 
-        const toggles = document.querySelectorAll(".attachment-toggle");
-        toggles.forEach((toggle) => {
-          toggle.addEventListener("click", function () {
-            const item = toggle.closest(".supported-item");
-            if (!item) return;
-            const panel = item.querySelector(".attachment-panel");
-            if (!panel) return;
+        const ATTACHMENT_MAP = {
+          "mp-1": [{ label: "Aspect Health Investment Pitch Deck", file: "/docs/aspect_health_investment_pitch_deck.pdf" }],
+          "mp-2": [{ label: "Aspect Health Positioning Statement", file: "/docs/aspect_health_positioning_statement.pdf" }],
+          "mp-3": [{ label: "JLL - Aspect Health Institutional Healthcare RE", file: "/docs/jll_aspect_health_institutional_healthcare_re.pdf" }],
+          "sip-1": [{ label: "Deal Sheet", file: "/docs/deal_sheet.pdf" }],
+          "sip-2": [{ label: "Welltower Recapitalization Model", file: "/docs/welltower_recapitalization_model.pdf" }],
+          "sip-3": [{ label: "Lease Extension Case Study - Stamford Health", file: "/docs/lease_extension_case_study_stamford_health.pdf" }],
+          "sip-5": [
+            { label: "Preferred Equity Memo - 1500 Boston Post Road", file: "/docs/preferred_equity_memo_1500_boston_post_road.pdf" },
+            { label: "Equity Recapitalization Memo - 3 Centerock Road", file: "/docs/equity_recapitalization_memo_3_centerock_road.pdf" },
+            { label: "Underwriting Model - 1500 Boston Post Road", file: "/docs/underwriting_model_1500_boston_post_road.pdf" }
+          ],
+          "hre-1": [
+            {
+              label: "Analysis of Excepted HOPD Status for Yale New Haven Health at 260 Long Ridge Road",
+              file: "/docs/analysis_of_excepted_hopd_status_yale_new_haven_health_260_long_ridge_road.pdf"
+            }
+          ]
+        };
 
-            const expanded = toggle.getAttribute("aria-expanded") === "true";
-            toggle.setAttribute("aria-expanded", String(!expanded));
+        const supportedItems = document.querySelectorAll(".supported-item[data-bullet-id]");
+        supportedItems.forEach((item) => {
+          const bulletId = item.dataset.bulletId;
+          const attachments = ATTACHMENT_MAP[bulletId];
+          const textNode = item.querySelector(".bullet-text");
+          if (!attachments || !textNode) return;
+
+          const text = textNode.textContent.trim();
+          item.innerHTML = "";
+
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "attachment-toggle";
+          button.setAttribute("aria-expanded", "false");
+          button.innerHTML = `${text}<svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg>`;
+
+          const panel = document.createElement("ul");
+          panel.className = "attachment-panel hidden";
+          attachments.forEach((attachment) => {
+            const row = document.createElement("li");
+            const link = document.createElement("a");
+            link.href = attachment.file;
+            link.target = "_blank";
+            link.rel = "noreferrer";
+            link.textContent = attachment.label;
+            row.appendChild(link);
+            panel.appendChild(row);
+          });
+
+          button.addEventListener("click", function () {
+            const expanded = button.getAttribute("aria-expanded") === "true";
+            button.setAttribute("aria-expanded", String(!expanded));
             panel.classList.toggle("hidden", expanded);
           });
+
+          item.appendChild(button);
+          item.appendChild(panel);
         });
       });
     </script>
@@ -179,20 +224,14 @@
               <p class="text-[15px] text-zinc-700">March 2025 &ndash; Present</p>
             </div>
             <ul class="mt-3 list-disc space-y-3 pl-6 text-[15px] leading-7 sm:text-base">
-              <li>
-                Led the development of an outpatient aggregation strategy targeting Class A ambulatory and high-acuity medical assets across the Northeast and Mid-Atlantic, incorporating a unified capital strategy combining core-plus stabilized assets with targeted value-add repositionings
+              <li class="supported-item" data-bullet-id="mp-1">
+                <span class="bullet-text">Led the development of an outpatient aggregation strategy targeting Class A ambulatory and high-acuity medical assets across the Northeast and Mid-Atlantic, incorporating a unified capital strategy combining core-plus stabilized assets with targeted value-add repositionings</span>
               </li>
-              <li>
-                Authored and advanced the platform&rsquo;s investment thesis centered on the premise that investment performance improves when healthcare real estate infrastructure is aligned with health system strategy and modern ambulatory care delivery models.
+              <li class="supported-item" data-bullet-id="mp-2">
+                <span class="bullet-text">Authored and advanced the platform&rsquo;s investment thesis centered on the premise that investment performance improves when healthcare real estate infrastructure is aligned with health system strategy and modern ambulatory care delivery models.</span>
               </li>
-              <li class="supported-item">
-                <button type="button" class="attachment-toggle" aria-expanded="false">
-                  Engaged JLL&rsquo;s Medical Properties Group as exclusive placement agent and partnered with senior managing directors to structure the capital raise strategy and investor presentation materials
-                  <svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg>
-                </button>
-                <ul class="attachment-panel hidden">
-                  <li><a href="/docs/jll_capital_raise_deck.pdf" target="_blank" rel="noreferrer">JLL - Aspect Health Institutional Healthcare RE</a></li>
-                </ul>
+              <li class="supported-item" data-bullet-id="mp-3">
+                <span class="bullet-text">Engaged JLL&rsquo;s Medical Properties Group as exclusive placement agent and partnered with senior managing directors to structure the capital raise strategy and investor presentation materials</span>
               </li>
               <li>
                 Led investor presentations and capital markets discussions across nearly two dozen meetings with leading Tier-1 LPs including Fengate, New York Life, BGO, Oaktree, LaSalle, Clarion, GFH, Walton Street, and HIG
@@ -206,32 +245,20 @@
               <p class="text-[15px] text-zinc-700">April 2021 &ndash; Present</p>
             </div>
             <ul class="mt-3 list-disc space-y-3 pl-6 text-[15px] leading-7 sm:text-base">
-              <li>
-                Led underwriting and transaction execution across more than $295MM of transaction volume spanning acquisitions, developments, recapitalizations, and dispositions of Class A medical assets including ambulatory surgery centers, imaging centers, orthopedic centers, and medical office buildings
+              <li class="supported-item" data-bullet-id="sip-1">
+                <span class="bullet-text">Led underwriting and transaction execution across more than $295MM of transaction volume spanning acquisitions, developments, recapitalizations, and dispositions of Class A medical assets including ambulatory surgery centers, imaging centers, orthopedic centers, and medical office buildings</span>
               </li>
-              <li class="supported-item">
-                <button type="button" class="attachment-toggle" aria-expanded="false">
-                  Built the underwriting model and recapitalization pro-forma for a $101MM seeded joint venture with Welltower, recapitalizing a 6-asset Class A outpatient portfolio into REIT ownership; managed ongoing communications with Welltower on go-forward acquisition opportunities; portfolio subsequently acquired by Remedy/Kayne Anderson in 2025
-                  <svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg>
-                </button>
-                <ul class="attachment-panel hidden">
-                  <li><a href="/docs/welltower_underwriting_model.pdf" target="_blank" rel="noreferrer">welltower_underwriting_model.pdf</a></li>
-                </ul>
+              <li class="supported-item" data-bullet-id="sip-2">
+                <span class="bullet-text">Built the underwriting model and recapitalization pro-forma for a $101MM seeded joint venture with Welltower, recapitalizing a 6-asset Class A outpatient portfolio into REIT ownership; managed ongoing communications with Welltower on go-forward acquisition opportunities; portfolio subsequently acquired by Remedy/Kayne Anderson in 2025</span>
               </li>
-              <li>
-                Negotiated directly with executive and real estate leadership at Montefiore, Yale New Haven Health, and Stamford Health across master leases, amendments, and extensions, including lease restructurings, term extensions, and expansions to extend WALT and support long-term asset valuation
+              <li class="supported-item" data-bullet-id="sip-3">
+                <span class="bullet-text">Negotiated directly with executive and real estate leadership at Montefiore, Yale New Haven Health, and Stamford Health across master leases, amendments, and extensions, including lease restructurings, term extensions, and expansions to extend WALT and support long-term asset valuation</span>
               </li>
               <li>
                 Structured capital stacks across multiple transactions comprising senior debt, preferred equity, and common equity; led debt sizing and structuring, including hedging strategy, working directly with regional lenders on originations, refinancings, and extensions; sourced physician and high-net-worth investor equity
               </li>
-              <li class="supported-item">
-                <button type="button" class="attachment-toggle" aria-expanded="false">
-                  Developed institutional-grade acquisition and development models in Excel and property-level cash flow analyses in Argus; performed sensitivity analysis and structured promote waterfalls; prepared Offering Memoranda supporting acquisitions, developments, and recapitalizations
-                  <svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg>
-                </button>
-                <ul class="attachment-panel hidden">
-                  <li><a href="/docs/sample_offering_memorandum.pdf" target="_blank" rel="noreferrer">sample_offering_memorandum.pdf</a></li>
-                </ul>
+              <li class="supported-item" data-bullet-id="sip-5">
+                <span class="bullet-text">Developed institutional-grade acquisition and development models in Excel and property-level cash flow analyses in Argus; performed sensitivity analysis and structured promote waterfalls; prepared Offering Memoranda supporting acquisitions, developments, and recapitalizations</span>
               </li>
               <li>
                 Led due diligence and closing execution, including PSA negotiation alongside counsel, third-party environmental, PCA, survey, and appraisal review, regulatory, zoning, and title review, lease abstraction and estoppel review, and management of closing checklists
@@ -281,8 +308,8 @@
         <div class="pt-4">
           <h3 class="text-base font-semibold text-zinc-950">Healthcare Regulatory Expertise:</h3>
           <ul class="mt-2 list-disc space-y-2 pl-6 text-[15px] leading-7 sm:text-base">
-            <li>
-              Medicare reimbursement frameworks across ASC, HOPD, and Physician Fee Schedule (PFS) care settings, including site-neutral payment policy and outpatient migration trends
+            <li class="supported-item" data-bullet-id="hre-1">
+              <span class="bullet-text">Medicare reimbursement frameworks across ASC, HOPD, and Physician Fee Schedule (PFS) care settings, including site-neutral payment policy and outpatient migration trends</span>
             </li>
             <li>
               Certificate of Need (CON) regulatory environments across Northeast and Mid-Atlantic markets and implications for ambulatory development and tenant retention
