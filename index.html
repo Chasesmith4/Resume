@@ -67,10 +67,23 @@
         color: #9ca3af;
       }
 
-      .doc-link {
+      .attachment-toggle {
         display: inline-flex;
         align-items: baseline;
         gap: 0.28rem;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .attachment-toggle:hover {
+        color: #6c4cf5;
+        text-decoration: underline;
+        text-shadow: 0 0 6px rgba(108, 76, 245, 0.35);
       }
 
       .doc-icon {
@@ -82,9 +95,22 @@
         flex-shrink: 0;
       }
 
-      .doc-link:hover .doc-icon {
+      .attachment-toggle:hover .doc-icon,
+      .attachment-toggle[aria-expanded="true"] .doc-icon {
         color: #6c4cf5;
         opacity: 1;
+      }
+
+      .attachment-panel {
+        margin-top: 0.35rem;
+        margin-left: 0.2rem;
+        border-left: 1px solid rgba(0, 0, 0, 0.12);
+        padding-left: 0.6rem;
+      }
+
+      .attachment-panel a {
+        font-size: 0.82rem;
+        color: #4b5563;
       }
     </style>
 
@@ -97,6 +123,20 @@
         if (entered === PASSWORD) {
           document.body.classList.remove("hidden");
         }
+
+        const toggles = document.querySelectorAll(".attachment-toggle");
+        toggles.forEach((toggle) => {
+          toggle.addEventListener("click", function () {
+            const item = toggle.closest(".supported-item");
+            if (!item) return;
+            const panel = item.querySelector(".attachment-panel");
+            if (!panel) return;
+
+            const expanded = toggle.getAttribute("aria-expanded") === "true";
+            toggle.setAttribute("aria-expanded", String(!expanded));
+            panel.classList.toggle("hidden", expanded);
+          });
+        });
       });
     </script>
   </head>
@@ -145,11 +185,15 @@
               <li>
                 Authored and advanced the platform&rsquo;s investment thesis centered on the premise that investment performance improves when healthcare real estate infrastructure is aligned with health system strategy and modern ambulatory care delivery models.
               </li>
-              <li>
-                <a href="/docs/jll_capital_raise_materials.html" target="_blank" rel="noreferrer" class="doc-link bullet-link"
-                  >Engaged JLL&rsquo;s Medical Properties Group as exclusive placement agent and partnered with senior managing directors to structure the capital raise strategy and investor presentation materials
-                  <svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg></a
-                >
+              <li class="supported-item">
+                <button type="button" class="attachment-toggle" aria-expanded="false">
+                  Engaged JLL&rsquo;s Medical Properties Group as exclusive placement agent and partnered with senior managing directors to structure the capital raise strategy and investor presentation materials
+                  <svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg>
+                </button>
+                <ul class="attachment-panel hidden">
+                  <li><a href="/docs/jll_capital_raise_deck.pdf" target="_blank" rel="noreferrer">jll_capital_raise_deck.pdf</a></li>
+                  <li><a href="/docs/jll_investor_presentation.pdf" target="_blank" rel="noreferrer">jll_investor_presentation.pdf</a></li>
+                </ul>
               </li>
               <li>
                 Led investor presentations and capital markets discussions across nearly two dozen meetings with leading Tier-1 LPs including Fengate, New York Life, BGO, Oaktree, LaSalle, Clarion, GFH, Walton Street, and HIG
@@ -166,11 +210,14 @@
               <li>
                 Led underwriting and transaction execution across more than $295MM of transaction volume spanning acquisitions, developments, recapitalizations, and dispositions of Class A medical assets including ambulatory surgery centers, imaging centers, orthopedic centers, and medical office buildings
               </li>
-              <li>
-                <a href="/docs/welltower_underwriting_model.pdf" target="_blank" rel="noreferrer" class="doc-link bullet-link"
-                  >Built the underwriting model and recapitalization pro-forma for a $101MM seeded joint venture with Welltower, recapitalizing a 6-asset Class A outpatient portfolio into REIT ownership; managed ongoing communications with Welltower on go-forward acquisition opportunities; portfolio subsequently acquired by Remedy/Kayne Anderson in 2025
-                  <svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg></a
-                >
+              <li class="supported-item">
+                <button type="button" class="attachment-toggle" aria-expanded="false">
+                  Built the underwriting model and recapitalization pro-forma for a $101MM seeded joint venture with Welltower, recapitalizing a 6-asset Class A outpatient portfolio into REIT ownership; managed ongoing communications with Welltower on go-forward acquisition opportunities; portfolio subsequently acquired by Remedy/Kayne Anderson in 2025
+                  <svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg>
+                </button>
+                <ul class="attachment-panel hidden">
+                  <li><a href="/docs/welltower_underwriting_model.pdf" target="_blank" rel="noreferrer">welltower_underwriting_model.pdf</a></li>
+                </ul>
               </li>
               <li>
                 Negotiated directly with executive and real estate leadership at Montefiore, Yale New Haven Health, and Stamford Health across master leases, amendments, and extensions, including lease restructurings, term extensions, and expansions to extend WALT and support long-term asset valuation
@@ -178,11 +225,14 @@
               <li>
                 Structured capital stacks across multiple transactions comprising senior debt, preferred equity, and common equity; led debt sizing and structuring, including hedging strategy, working directly with regional lenders on originations, refinancings, and extensions; sourced physician and high-net-worth investor equity
               </li>
-              <li>
-                <a href="/docs/sample_offering_memorandum.pdf" target="_blank" rel="noreferrer" class="doc-link bullet-link"
-                  >Developed institutional-grade acquisition and development models in Excel and property-level cash flow analyses in Argus; performed sensitivity analysis and structured promote waterfalls; prepared Offering Memoranda supporting acquisitions, developments, and recapitalizations
-                  <svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg></a
-                >
+              <li class="supported-item">
+                <button type="button" class="attachment-toggle" aria-expanded="false">
+                  Developed institutional-grade acquisition and development models in Excel and property-level cash flow analyses in Argus; performed sensitivity analysis and structured promote waterfalls; prepared Offering Memoranda supporting acquisitions, developments, and recapitalizations
+                  <svg class="doc-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3h6l5 5v13H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6"/></svg>
+                </button>
+                <ul class="attachment-panel hidden">
+                  <li><a href="/docs/sample_offering_memorandum.pdf" target="_blank" rel="noreferrer">sample_offering_memorandum.pdf</a></li>
+                </ul>
               </li>
               <li>
                 Led due diligence and closing execution, including PSA negotiation alongside counsel, third-party environmental, PCA, survey, and appraisal review, regulatory, zoning, and title review, lease abstraction and estoppel review, and management of closing checklists
